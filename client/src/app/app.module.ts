@@ -6,11 +6,31 @@ import { AppComponent } from './app.component';
 import { AccountListComponent } from './account-list/account-list.component';
 import { MatButtonModule, MatCardModule, MatTableModule, MatInputModule, MatListModule, MatToolbarModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AccountEditComponent } from './account-edit/account-edit.component';
+import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+
+const appRoutes: Routes = [
+  { path: '', redirectTo: '/account-list', pathMatch: 'full' },
+  {
+    path: 'account-list',
+    component: AccountListComponent
+  },
+  {
+    path: 'account-add',
+    component: AccountEditComponent
+  },
+  {
+    path: 'account-edit/:id',
+    component: AccountEditComponent
+  }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    AccountListComponent
+    AccountListComponent,
+    AccountEditComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +41,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatInputModule,
     MatListModule,
     MatTableModule,
-    MatToolbarModule
+    MatToolbarModule,
+    FormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [AccountService],
   bootstrap: [AppComponent]

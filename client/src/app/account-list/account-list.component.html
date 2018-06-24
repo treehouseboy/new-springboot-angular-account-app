@@ -1,16 +1,20 @@
 <h2>Account List</h2>
 
-    <table mat-table border="1" style="text-align:center">
-      <tr>
-        <th mat-header-cell > ID </th>
-        <th mat-header-cell > First Name </th>
-        <th mat-header-cell > Last Name </th>
-        <th mat-header-cell > Account Number </th>
-      </tr>
-      <tr *ngFor="let account of accounts">
-        <td mat-cell > {{account.id}} </td>
-        <td mat-cell > {{account.firstName}} </td>
-        <td mat-cell > {{account.lastName}} </td>
-        <td mat-cell > {{account.accountNumber}} </td>
-      </tr>
-    </table>
+<table mat-table border="1" style="text-align:center">
+  <tr>
+    <th mat-header-cell> ID </th>
+    <th mat-header-cell> First Name </th>
+    <th mat-header-cell> Last Name </th>
+    <th mat-header-cell> Account Number </th>
+  </tr>
+  <tr *ngFor="let account of accounts">
+    <td mat-cell> {{account.id}} </td>
+    <td mat-cell> {{account.firstName}} </td>
+    <td mat-cell> {{account.lastName}} </td>
+    <td mat-cell> {{account.accountNumber}} </td>
+    <td>
+      <a mat-button [routerLink]="['/account-edit', account.id]">Edit</a>
+    </td>
+  </tr>
+</table>
+<button mat-fab color="primary" [routerLink]="['/account-add']">Add</button>
