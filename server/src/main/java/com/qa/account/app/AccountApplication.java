@@ -20,7 +20,7 @@ public class AccountApplication {
 	@Bean
 	ApplicationRunner init(AccountRepository repository) {
 		return args -> {
-			Stream.of("Fred", "James", "Pam", "Larry", "Ben", "Anna", "tilly", "Frances", "Carl")
+			Stream.of("Fred", "James", "Pam", "Larry", "Ben", "Anna", "Tilly", "Frances", "Carl")
 					.forEach(firstName -> {
 						Account account = new Account();
 						account.setFirstName(firstName);
