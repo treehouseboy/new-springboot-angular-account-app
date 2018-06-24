@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../shared/account/account.service';
+import { Subscription } from 'rxjs/Subscription';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-account-list',
@@ -7,13 +9,22 @@ import { AccountService } from '../shared/account/account.service';
   styleUrls: ['./account-list.component.css']
 })
 export class AccountListComponent implements OnInit {
-    accounts: Array<any>;
+  accounts: Array<any>;
 
-    constructor(private accountService: AccountService) { }
+  constructor(private router: Router,
+    private accountService: AccountService) { }
 
-    ngOnInit() {
-      this.accountService.getAll().subscribe(data => {
-        this.accounts = data;
-      });
+  ngOnInit() {
+    this.accountService.getAll().subscribe(data => {
+      this.accounts = data;
+    });
   }
+
+
+  deleteAccount(id) {
+    this.accountService.removeAccount(id).subscribe(result => {
+      location.reload();
+    }, error => console.error("error"));
+  }
+
 }

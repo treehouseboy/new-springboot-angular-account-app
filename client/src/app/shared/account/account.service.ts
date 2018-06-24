@@ -5,17 +5,17 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class AccountService {
 
-  public API = '//localhost:8080';
-  public ACCOUNT_API = this.API + '/accounts';
+  public LOCALHOST = '//localhost:8080';
+  public ACCOUNTS = this.LOCALHOST + '/accounts';
 
   constructor(private http: HttpClient) {
   }
 
   getAll(): Observable<any> {
-    return this.http.get(this.API + '/select-accounts');
+    return this.http.get(this.LOCALHOST + '/select-accounts');
   }
   get(id: string) {
-    return this.http.get(this.ACCOUNT_API + '/' + id);
+    return this.http.get(this.ACCOUNTS + '/' + id);
   }
 
   save(account: any): Observable<any> {
@@ -23,11 +23,17 @@ export class AccountService {
     if (account['href']) {
       result = this.http.put(account.href, account);
     } else {
-      result = this.http.post(this.ACCOUNT_API, account);
+      result = this.http.post(this.ACCOUNTS, account);
     }
     return result;
   }
   remove(href: string) {
+    console.log(href);
     return this.http.delete(href);
+  }
+  removeAccount(id) {
+    var address = 'http:' + this.ACCOUNTS + '/' + id;
+    console.log(address);
+    return this.http.delete(address);
   }
 }

@@ -30,7 +30,7 @@ export class AccountEditComponent implements OnInit, OnDestroy {
             this.account.href = account._links.self.href;
           } else {
             console.log(`Account with id '${id}' not found, returning to list`);
-            this.gotoList();
+            this.goToList();
           }
         });
       }
@@ -41,19 +41,19 @@ export class AccountEditComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  gotoList() {
+  goToList() {
    this.router.navigate(['/account-list']);
  }
 
  save(form: NgForm) {
    this.accountService.save(form).subscribe(result => {
-     this.gotoList();
-   }, error => console.error(error));
+     this.goToList();
+   }, error => window.alert("Account number must be four digits exact"));
  }
 
  remove(href) {
    this.accountService.remove(href).subscribe(result => {
-     this.gotoList();
+     this.goToList();
    }, error => console.error(error));
  }
 
