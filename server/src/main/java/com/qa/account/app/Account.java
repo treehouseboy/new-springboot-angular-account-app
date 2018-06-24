@@ -4,6 +4,7 @@ package com.qa.account.app;
 import lombok.*;
 
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Entity;
 
@@ -14,8 +15,11 @@ import javax.persistence.Entity;
 public class Account {
     @Id @GeneratedValue
     private Long id;
+    @Size(min = 1, max = 255)
     private @NonNull String firstName;
+    @Size(min = 1, max = 255)
     private @NonNull String lastName;
+    @Size(min = 4, max = 4)
     private @NonNull String accountNumber;
     
 	public Long getId() {

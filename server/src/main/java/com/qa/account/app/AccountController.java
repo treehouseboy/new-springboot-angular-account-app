@@ -19,15 +19,7 @@ class AccountController {
     @GetMapping("/select-accounts")
     @CrossOrigin(origins = "http://localhost:4200")
     public Collection<Account> selectAccounts() {
-        return repository.findAll().stream()
-                .filter(this::selected)
-                .collect(Collectors.toList());
+        return repository.findAll().stream().collect(Collectors.toList());
     }
 
-    private boolean selected(Account account) {
-        return !account.getFirstName().equals("Fred") &&
-                !account.getFirstName().equals("James") &&
-                !account.getFirstName().equals("Pam") &&
-                !account.getFirstName().equals("Larry");
-    }
 }
