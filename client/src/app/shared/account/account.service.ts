@@ -22,18 +22,19 @@ export class AccountService {
     let result: Observable<Object>;
     if (account['href']) {
       result = this.http.put(account.href, account);
+      console.log("Account successfully added");
     } else {
       result = this.http.post(this.ACCOUNTS, account);
     }
     return result;
   }
   remove(href: string) {
-    console.log(href);
+    console.log("Address of account to be deleted is " + href);
     return this.http.delete(href);
   }
   removeAccount(id) {
     var address = 'http:' + this.ACCOUNTS + '/' + id;
-    console.log(address);
+    console.log("Address of account to be deleted is " + address);
     return this.http.delete(address);
   }
 }

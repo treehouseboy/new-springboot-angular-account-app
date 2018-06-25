@@ -25,12 +25,6 @@ public class AccountApplication {
 	@Bean
 	ApplicationRunner init(AccountRepository repository) {
 		return args -> {
-//			Stream.of("Fred", "James", "Pam")
-//					.forEach(firstName -> {
-//						Account account = new Account();
-//						account.setFirstName(firstName);
-//						repository.save(account);
-//					});
 			for(int i = 0; i < 3; i++) {
 				account = new Account();
 				account.setFirstName(firstName[i]);

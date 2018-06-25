@@ -1,19 +1,19 @@
 <h2>Account List</h2>
 
-<table mat-table border="1" style="text-align:center">
+<table mat-table  style="text-align:center">
   <tr>
-    <th mat-header-cell> ID </th>
-    <th mat-header-cell> First Name </th>
-    <th mat-header-cell> Last Name </th>
-    <th mat-header-cell> Account Number </th>
+    <th class="header" mat-header-cell> ID </th>
+    <th  class="header" mat-header-cell> First Name </th>
+    <th class="header" mat-header-cell> Last Name </th>
+    <th class="header" mat-header-cell> Account Number </th>
   </tr>
   <tr *ngFor="let account of accounts">
     <td mat-cell> {{account.id}} </td>
     <td mat-cell> {{account.firstName}} </td>
     <td mat-cell> {{account.lastName}} </td>
     <td mat-cell> {{account.accountNumber}} </td>
-    <td> <a mat-raised-button [routerLink]="['/account-edit', account.id]">Edit</a> </td>
+    <td> <a  mat-raised-button [routerLink]="['/account-edit', account.id]">Edit</a> </td>
     <td>
-      <button mat-raised-button color="secondary" (click)="deleteAccount(account.id)" type="button">Delete</button></td>
+      <button  mat-raised-button color="secondary" (click)="deleteAccount(account.id)" type="button">Delete</button></td>
   </tr>
 </table>
