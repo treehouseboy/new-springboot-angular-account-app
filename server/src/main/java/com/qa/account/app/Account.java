@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 
 @Entity
 @Getter @Setter
-@NoArgsConstructor
 @ToString @EqualsAndHashCode
 public class Account {
     @Id @GeneratedValue
@@ -21,6 +20,15 @@ public class Account {
     private @NonNull String lastName;
     @Size(min = 4, max = 4)
     private @NonNull String accountNumber;
+    
+    public Account() {}
+    
+    public Account(long id, String firstName, String lastName, String accountNumber) {
+    	this.id = id;
+    	this.firstName = firstName;
+    	this.lastName = lastName;
+    	this.accountNumber = accountNumber;
+    }
     
 	public Long getId() {
 		return id;

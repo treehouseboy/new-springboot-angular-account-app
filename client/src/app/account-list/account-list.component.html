@@ -12,7 +12,7 @@
     <td mat-cell> {{account.firstName}} </td>
     <td mat-cell> {{account.lastName}} </td>
     <td mat-cell> {{account.accountNumber}} </td>
-    <td> <a  mat-raised-button [routerLink]="['/account-edit', account.id]">Edit</a> </td>
+    <td> <a mat-raised-button [routerLink]="['/account-edit', account.id]">Edit</a> </td>
     <td>
       <button  mat-raised-button color="secondary" (click)="deleteAccount(account.id)" type="button">Delete</button></td>
   </tr>
