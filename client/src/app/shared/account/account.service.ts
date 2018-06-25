@@ -12,8 +12,9 @@ export class AccountService {
   }
 
   getAll(): Observable<any> {
-    return this.http.get(this.LOCALHOST + '/select-accounts');
+    return this.http.get(this.ACCOUNTS);
   }
+  
   get(id: string) {
     return this.http.get(this.ACCOUNTS + '/' + id);
   }
@@ -22,9 +23,10 @@ export class AccountService {
     let result: Observable<Object>;
     if (account['href']) {
       result = this.http.put(account.href, account);
-      console.log("Account successfully added");
+      console.log("Account successfully updated");
     } else {
       result = this.http.post(this.ACCOUNTS, account);
+      console.log("Account successfully added");
     }
     return result;
   }

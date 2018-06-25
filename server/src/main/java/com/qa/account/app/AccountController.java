@@ -24,14 +24,21 @@ class AccountController {
         util = new JSONUtil();
     }
 
-    @GetMapping("/select-accounts")
+    @GetMapping("/accounts")
     @CrossOrigin(origins = "http://localhost:4200")
     @ResponseBody
     public Collection<Account> selectAccounts() {
         return repository.findAll().stream().collect(Collectors.toList());
     }
     
-	@PostMapping("/account-add")
+    @GetMapping("/accounts/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
+    @ResponseBody
+    public String getOneAccount(@PathVariable long id) {
+        return util.getJSONForObject(repository.findById(id).get());
+    }
+    
+	@PostMapping("/accounts")
 	@CrossOrigin(origins = "http://localhost:4200")
     public String createAccount(@RequestBody String account){
 		Account newAccount = util.getObjectForJSON(account, Account.class);
@@ -39,7 +46,7 @@ class AccountController {
     	return "{\"message\" : \"Account successfully created\"}";
     }
 	
-	@PutMapping("/account-edit/{id}")
+	@PutMapping("/accounts/{id}")
 	@CrossOrigin(origins = "http://localhost:4200")
     @ResponseBody
     public String updateCustomer(@PathVariable long id, @RequestBody String account) {
@@ -55,7 +62,7 @@ class AccountController {
     	return "{\"message\" : \"Account successfully updated\"}";
     }
 	
-	@DeleteMapping(value="/delete-account/{id}")
+	@DeleteMapping(value="/accounts/{id}")
 	@CrossOrigin(origins = "http://localhost:4200")
     @ResponseBody
     public String returnRequestBody(@PathVariable long id){
