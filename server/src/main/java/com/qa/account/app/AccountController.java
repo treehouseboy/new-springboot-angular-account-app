@@ -49,7 +49,7 @@ class AccountController {
 	@PutMapping("/accounts/{id}")
 	@CrossOrigin(origins = "http://localhost:4200")
     @ResponseBody
-    public String updateCustomer(@PathVariable long id, @RequestBody String account) {
+    public String updateAccount(@PathVariable long id, @RequestBody String account) {
 		
 		Account accountToUpdate = util.getObjectForJSON(account, Account.class);
     	Account existingAccount = repository.findById(id).get();
@@ -65,7 +65,7 @@ class AccountController {
 	@DeleteMapping(value="/accounts/{id}")
 	@CrossOrigin(origins = "http://localhost:4200")
     @ResponseBody
-    public String returnRequestBody(@PathVariable long id){
+    public String deleteAccount(@PathVariable long id){
 		repository.deleteById(id);
     	return "{\"message\" : \"Account successfully deleted\"}";
     }

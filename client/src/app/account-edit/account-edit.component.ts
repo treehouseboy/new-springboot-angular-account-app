@@ -12,6 +12,7 @@ import { NgForm } from '@angular/forms';
 export class AccountEditComponent implements OnInit, OnDestroy {
 
   account: any = {};
+  accountId: string;
 
   sub: Subscription;
 
@@ -24,10 +25,12 @@ export class AccountEditComponent implements OnInit, OnDestroy {
     this.sub = this.route.params.subscribe(params => {
       const id = params['id'];
       if (id) {
+        this.accountId = id;
+        console.log(this.accountId);
         this.accountService.get(id).subscribe((account: any) => {
           if (account) {
             this.account = account;
-            this.account.href = account._links.self.href;
+            console.log(this.account.id);
           } else {
             console.log(`Account with id '${id}' not found, returning to list`);
             this.goToList();
@@ -46,13 +49,13 @@ export class AccountEditComponent implements OnInit, OnDestroy {
  }
 
  save(form: NgForm) {
-   this.accountService.save(form).subscribe(result => {
+   this.accountService.saveAccount(form, this.accountId).subscribe(result => {
      this.goToList();
-   }, error => window.alert("Account number must be four digits exact"));
+   }, error => console.log(error));
  }
 
- remove(href) {
-   this.accountService.remove(href).subscribe(result => {
+ removeAccount(id) {
+   this.accountService.removeAccount(id).subscribe(result => {
      this.goToList();
    }, error => console.error(error));
  }

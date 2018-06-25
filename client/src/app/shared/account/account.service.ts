@@ -14,26 +14,22 @@ export class AccountService {
   getAll(): Observable<any> {
     return this.http.get(this.ACCOUNTS);
   }
-  
+
   get(id: string) {
     return this.http.get(this.ACCOUNTS + '/' + id);
   }
 
-  save(account: any): Observable<any> {
-    let result: Observable<Object>;
-    if (account['href']) {
-      result = this.http.put(account.href, account);
-      console.log("Account successfully updated");
-    } else {
-      result = this.http.post(this.ACCOUNTS, account);
+
+  saveAccount(account: any, accountId: string) {
+    if (accountId == null) {
       console.log("Account successfully added");
+      return this.http.post(this.ACCOUNTS, account);
+    } else {
+      var address = this.ACCOUNTS + "/" + accountId;
+      return this.http.put(address, account);
     }
-    return result;
   }
-  remove(href: string) {
-    console.log("Address of account to be deleted is " + href);
-    return this.http.delete(href);
-  }
+
   removeAccount(id) {
     var address = 'http:' + this.ACCOUNTS + '/' + id;
     console.log("Address of account to be deleted is " + address);

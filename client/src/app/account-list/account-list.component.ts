@@ -17,15 +17,13 @@ export class AccountListComponent implements OnInit {
   ngOnInit() {
     this.accountService.getAll().subscribe(data => {
       this.accounts = data;
-      console.log("Accounts returned: " + data)
     });
   }
 
-
-  deleteAccount(id) {
+  removeAccount(id) {
     this.accountService.removeAccount(id).subscribe(result => {
       location.reload();
-    }, error => console.error("error"));
+    }, error => console.error(error));
   }
 
 }
